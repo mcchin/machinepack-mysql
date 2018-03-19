@@ -220,6 +220,8 @@ module.exports = {
       // Parse port & host
       if ( inputs.meta.socketPath ) {
         _mysqlClientConfig.socketPath = inputs.meta.socketPath;
+        delete _mysqlClientConfig.host;
+        delete _mysqlClientConfig.port;
       } else {
         var DEFAULT_HOST = 'localhost';
         var DEFAULT_PORT = 3306;
@@ -270,7 +272,7 @@ module.exports = {
     //
     // More about using pools with node-mysql:
     //  • https://github.com/felixge/node-mysql#pooling-connections
-    console.log('zzzz', _mysqlClientConfig);
+    console.log('zzzz2', _mysqlClientConfig);
     var pool = felix.createPool(_mysqlClientConfig);
 
     // Bind an "error" handler in order to handle errors from connections in the pool,
