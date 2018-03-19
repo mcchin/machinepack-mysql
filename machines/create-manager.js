@@ -270,6 +270,7 @@ module.exports = {
     //
     // More about using pools with node-mysql:
     //  • https://github.com/felixge/node-mysql#pooling-connections
+    console.log('zzzz', _mysqlClientConfig);
     var pool = felix.createPool(_mysqlClientConfig);
 
     // Bind an "error" handler in order to handle errors from connections in the pool,
