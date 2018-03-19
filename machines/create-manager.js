@@ -218,18 +218,22 @@ module.exports = {
       var parsedConnectionStr = Url.parse(urlToParse);
 
       // Parse port & host
-      var DEFAULT_HOST = 'localhost';
-      var DEFAULT_PORT = 3306;
-      if (parsedConnectionStr.port) {
-        _mysqlClientConfig.port = +parsedConnectionStr.port;
+      if ( inputs.meta.socketPath ) {
+        _mysqlClientConfig.socketPath = inputs.meta.socketPath;
       } else {
-        _mysqlClientConfig.port = DEFAULT_PORT;
-      }
+        var DEFAULT_HOST = 'localhost';
+        var DEFAULT_PORT = 3306;
+        if (parsedConnectionStr.port) {
+          _mysqlClientConfig.port = +parsedConnectionStr.port;
+        } else {
+          _mysqlClientConfig.port = DEFAULT_PORT;
+        }
 
-      if (parsedConnectionStr.hostname) {
-        _mysqlClientConfig.host = parsedConnectionStr.hostname;
-      } else {
-        _mysqlClientConfig.host = DEFAULT_HOST;
+        if (parsedConnectionStr.hostname) {
+          _mysqlClientConfig.host = parsedConnectionStr.hostname;
+        } else {
+          _mysqlClientConfig.host = DEFAULT_HOST;
+        }
       }
 
       // Parse user & password
